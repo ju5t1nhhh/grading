@@ -1,0 +1,83 @@
+package edu.qd.hds.grading.domain;
+
+import java.io.Serializable;
+
+public class UserDetail implements Serializable {
+
+    private static final long serialVersionUID = -5313451181274350394L;
+
+    private long user;
+
+    private String avatar;
+
+    private String brief;
+
+    private String website;
+
+    private String phone;
+
+    private char gender;
+
+    private String wechat;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public long getUser() {
+        return user;
+    }
+
+    public void setUser(long user) {
+        this.user = user;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getBrief() {
+        return brief;
+    }
+
+    public void setBrief(String brief) {
+        this.brief = brief;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public char getGender() {
+        return gender;
+    }
+
+    public void setGender(char gender) {
+        this.gender = gender;
+    }
+
+    public String getWechat() {
+        return wechat;
+    }
+
+    public void setWechat(String wechat) {
+        this.wechat = wechat;
+    }
+
+}
