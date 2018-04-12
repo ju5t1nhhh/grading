@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.qd.hds.grading.dao.admin.AdminCommentDao">
+
+    <resultMap id="BaseResultMap" type="edu.qd.hds.grading.domain.Comment">
+        <result column="cmt_post" property="post" />
+        <result column="cmt_cmtid" property="cmtid" />
+        <result column="cmt_cmtor" property="cmtor" />
+        <result column="cmt_cmtorid" property="cmtorid" />
+        <result column="cmt_text" property="text" />
+        <result column="cmt_creatime" property="creatime" />
+    </resultMap>
+
+    <delete id="deleteByDTO" parameterType="edu.qd.hds.grading.domain.Comment">
+        DELETE FROM `comment`
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="post != null and post > 0">
+                AND `cmt_post`=#{post}
+            </if>
+            <if test="cmtid != null and cmtid > 0">
+                AND `cmt_cmtid`=#{cmtid}
+            </if>
+        </trim>
+    </delete>
+
+    <select id="selectByDTO" parameterType="map" resultMap="BaseResultMap">
+        SELECT * FROM `comment`
+        <if test="domain != null">
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="domain.post != null and domain.post > 0">
+                AND `cmt_post`=#{domain.post}
+            </if>
+            <if test="domain.cmtid != null and domain.cmtid > 0">
+                AND `cmt_cmtid`=#{domain.cmtid}
+            </if>
+            <if test="domain.cmtor != null and domain.cmtor > 0">
+                AND `cmt_cmtor`=#{domain.cmtor}
+            </if>
+            <if test="domain.cmtorid != null and domain.cmtorid.length() > 0">
+                AND `cmt_cmtorid` LIKE CONCAT('%',#{domain.cmtorid},'%')
+            </if>
+            <if test="domain.text != null and domain.text.length() > 0">
+                AND `cmt_text` LIKE CONCAT('%',#{domain.text},'%')
+            </if>
+            <if test="domain.creatime != null">
+                AND `cmt_creatime`> #{domain.creatime}
+            </if>
+        </trim>
+        </if>
+        ORDER BY `cmt_creatime` DESC
+        LIMIT #{offset},#{length}
+    </select>
+
+</mapper>

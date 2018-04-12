@@ -17,6 +17,28 @@ public class Message implements Serializable {
 
     private Timestamp creatime;
 
+    public Message() {
+    }
+
+    public Message(long rcvder, long senderid, String text, int status, Timestamp creatime) {
+        this.rcvder = rcvder;
+        this.senderid = senderid;
+        this.text = text;
+        this.status = status;
+        this.creatime = creatime;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "rcvder=" + rcvder +
+                ", senderid=" + senderid +
+                ", text='" + text + '\'' +
+                ", status=" + status +
+                ", creatime=" + creatime +
+                '}';
+    }
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }

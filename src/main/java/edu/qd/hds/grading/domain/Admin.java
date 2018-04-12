@@ -12,6 +12,23 @@ public class Admin implements Serializable {
 
     private int role;
 
+    public Admin(){}
+
+    public Admin(String loginId, String pwd, int role) {
+        this.loginId = loginId;
+        this.pwd = pwd;
+        this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "loginId='" + loginId + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", role=" + role +
+                '}';
+    }
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }

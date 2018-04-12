@@ -10,6 +10,22 @@ public class Favorite implements Serializable {
 
     private long post;
 
+    public Favorite() {
+    }
+
+    public Favorite(long user, long post) {
+        this.user = user;
+        this.post = post;
+    }
+
+    @Override
+    public String toString() {
+        return "Favorite{" +
+                "user=" + user +
+                ", post=" + post +
+                '}';
+    }
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }

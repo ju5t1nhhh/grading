@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.qd.hds.grading.dao.admin.AdminSensitiveWordDao">
+
+    <resultMap id="BaseResultMap" type="edu.qd.hds.grading.domain.SensitiveWord">
+        <result column="sw_section" property="section" />
+        <result column="sw_word" property="word" />
+        <result column="sw_replace" property="replace" />
+    </resultMap>
+
+    <insert id="insertOne" parameterType="edu.qd.hds.grading.domain.SensitiveWord">
+        INSERT INTO `sensitive_word` VALUES (#{section},#{word},#{replace})
+    </insert>
+
+    <delete id="deleteByDTO" parameterType="edu.qd.hds.grading.domain.SensitiveWord">
+        DELETE FROM `sensitive_word`
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="section != null and section > 0">
+                AND `sw_section`=#{section}
+            </if>
+            <if test="word != null and word.length() > 0">
+                AND `sw_word`=#{word}
+            </if>
+        </trim>
+    </delete>
+
+    <select id="selectByDTO" parameterType="map" resultMap="BaseResultMap">
+        SELECT * FROM `sensitive_word`
+        <if test="domain != null">
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="domain.section != null and domain.section > 0">
+                AND `sw_section`=#{domain.section}
+            </if>
+        </trim>
+        </if>
+        ORDER BY `sw_section`
+        LIMIT #{offset},#{length}
+    </select>
+
+</mapper>

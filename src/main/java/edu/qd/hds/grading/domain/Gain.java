@@ -12,6 +12,24 @@ public class Gain implements Serializable {
 
     private int gins;
 
+    public Gain() {
+    }
+
+    public Gain(long post, long giver, int gins) {
+        this.post = post;
+        this.giver = giver;
+        this.gins = gins;
+    }
+
+    @Override
+    public String toString() {
+        return "Gain{" +
+                "post=" + post +
+                ", giver=" + giver +
+                ", gins=" + gins +
+                '}';
+    }
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }

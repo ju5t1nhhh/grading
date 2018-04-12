@@ -54,6 +54,14 @@ CREATE TABLE `complaint`(
 	`com_creatime` DATETIME,
 	INDEX (`com_creatime`)
 )ENGINE=INNODB CHARSET utf8;
+CREATE TABLE `complaint_post`(
+  `cp_post` BIGINT,
+  `cp_cmtid` INT,
+  `cp_times` INT,
+  `cp_status` INT,
+  PRIMARY KEY(`cp_post`),
+  INDEX (`cp_post`,`cp_cmtid`)
+)ENGINE=INNODB CHARSET utf8;
 
 # Comment
 CREATE TABLE `comment`(

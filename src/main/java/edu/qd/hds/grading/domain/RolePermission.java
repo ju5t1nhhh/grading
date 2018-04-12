@@ -10,6 +10,22 @@ public class RolePermission implements Serializable {
 
     private int permission;
 
+    public RolePermission() {
+    }
+
+    public RolePermission(int role, int permission) {
+        this.role = role;
+        this.permission = permission;
+    }
+
+    @Override
+    public String toString() {
+        return "RolePermission{" +
+                "role=" + role +
+                ", permission=" + permission +
+                '}';
+    }
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }

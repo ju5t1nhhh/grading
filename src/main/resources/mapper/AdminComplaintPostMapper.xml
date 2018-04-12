@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.qd.hds.grading.dao.admin.AdminComplaintPostDao">
+
+    <resultMap id="BaseResultMap" type="edu.qd.hds.grading.domain.ComplaintPost">
+        <result column="cp_post" property="post" />
+        <result column="cp_cmtid" property="cmtid" />
+        <result column="cp_times" property="times" />
+        <result column="cp_status" property="status" />
+    </resultMap>
+
+    <update id="updateOne" parameterType="edu.qd.hds.grading.domain.ComplaintPost">
+        UPDATE `complaint_post`
+        <set>
+            <if test="status != null and status > 0">
+                `cp_status`=#{status},
+            </if>
+        </set>
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="post != null and post > 0">
+                AND `cp_post`=#{post}
+            </if>
+            <if test="cmtid != null and cmtid > 0">
+                AND `cp_cmtid`=#{cmtid}
+            </if>
+        </trim>
+    </update>
+
+    <select id="selectByDTO" parameterType="map" resultMap="BaseResultMap">
+        SELECT * FROM `complaint_post`
+        <if test="domain != null">
+            <trim prefix="WHERE" prefixOverrides="AND">
+                <if test="domain.post != null and domain.post > 0">
+                    AND `cp_post`=#{domain.post}
+                </if>
+                <if test="domain.cmtid != null and domain.cmtid > 0">
+                    AND `cp_cmtid`=#{domain.cmtid}
+                </if>
+                <if test="domain.status != null and domain.status > 0">
+                    AND `cp_status`=#{domain.status}
+                </if>
+            </trim>
+        </if>
+        ORDER BY `cp_times` DESC
+        LIMIT #{offset},#{length}
+    </select>
+
+</mapper>

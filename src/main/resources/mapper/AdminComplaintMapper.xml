@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.qd.hds.grading.dao.admin.AdminComplaintDao">
+
+    <resultMap id="BaseResultMap" type="edu.qd.hds.grading.domain.Complaint">
+        <result column="com_user" property="user" />
+        <result column="com_post" property="post" />
+        <result column="com_cmtid" property="cmtid" />
+        <result column="com_msg" property="msg" />
+        <result column="com_creatime" property="creatime" />
+    </resultMap>
+
+    <select id="selectByDTO" parameterType="map" resultMap="BaseResultMap">
+        SELECT * FROM `complaint`
+        <if test="domain != null">
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="domain.user != null and domain.user > 0">
+                AND `com_post`=#{domain.user}
+            </if>
+            <if test="domain.post != null and domain.post > 0">
+                AND `com_post`=#{domain.post}
+            </if>
+            <if test="domain.cmtid != null and domain.cmtid > 0">
+                AND `com_cmtid`=#{domain.cmtid}
+            </if>
+            <if test="domain.msg != null and domain.msg.length() > 0">
+                AND `com_msg`=#{domain.msg}
+            </if>
+            <if test="domain.creatime != null">
+                AND `com_creatime`> #{domain.creatime}
+            </if>
+        </trim>
+        </if>
+        ORDER BY `com_creatime` DESC
+        LIMIT #{offset},#{length}
+    </select>
+
+</mapper>

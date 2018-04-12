@@ -10,6 +10,22 @@ public class Follow implements Serializable {
 
     private long foruser;
 
+    public Follow() {
+    }
+
+    public Follow(long user, long foruser) {
+        this.user = user;
+        this.foruser = foruser;
+    }
+
+    @Override
+    public String toString() {
+        return "Follow{" +
+                "user=" + user +
+                ", foruser=" + foruser +
+                '}';
+    }
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }

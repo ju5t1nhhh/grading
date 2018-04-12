@@ -12,6 +12,24 @@ public class Score implements Serializable {
 
     private int score;
 
+    public Score() {
+    }
+
+    public Score(long user, long post, int score) {
+        this.user = user;
+        this.post = post;
+        this.score = score;
+    }
+
+    @Override
+    public String toString() {
+        return "Score{" +
+                "user=" + user +
+                ", post=" + post +
+                ", score=" + score +
+                '}';
+    }
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }

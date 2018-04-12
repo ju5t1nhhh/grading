@@ -16,6 +16,28 @@ public class Permission implements Serializable {
 
     private int parent;
 
+    public Permission() {
+    }
+
+    public Permission(int id, String name, String url, int type, int parent) {
+        this.id = id;
+        this.name = name;
+        this.url = url;
+        this.type = type;
+        this.parent = parent;
+    }
+
+    @Override
+    public String toString() {
+        return "Permission{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                ", type=" + type +
+                ", parent=" + parent +
+                '}';
+    }
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }

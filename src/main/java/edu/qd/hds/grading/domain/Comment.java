@@ -19,6 +19,30 @@ public class Comment implements Serializable {
 
     private Timestamp creatime;
 
+    public Comment() {
+    }
+
+    public Comment(long post, int cmtid, long cmtor, String cmtorid, String text, Timestamp creatime) {
+        this.post = post;
+        this.cmtid = cmtid;
+        this.cmtor = cmtor;
+        this.cmtorid = cmtorid;
+        this.text = text;
+        this.creatime = creatime;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "post=" + post +
+                ", cmtid=" + cmtid +
+                ", cmtor=" + cmtor +
+                ", cmtorid='" + cmtorid + '\'' +
+                ", text='" + text + '\'' +
+                ", creatime=" + creatime +
+                '}';
+    }
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }

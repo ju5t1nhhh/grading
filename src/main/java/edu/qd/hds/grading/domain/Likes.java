@@ -12,6 +12,24 @@ public class Likes implements Serializable {
 
     private long liker;
 
+    public Likes() {
+    }
+
+    public Likes(long post, int cmtid, long liker) {
+        this.post = post;
+        this.cmtid = cmtid;
+        this.liker = liker;
+    }
+
+    @Override
+    public String toString() {
+        return "Likes{" +
+                "post=" + post +
+                ", cmtid=" + cmtid +
+                ", liker=" + liker +
+                '}';
+    }
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }

@@ -10,6 +10,22 @@ public class Tag implements Serializable {
 
     private long post;
 
+    public Tag() {
+    }
+
+    public Tag(String name, long post) {
+        this.name = name;
+        this.post = post;
+    }
+
+    @Override
+    public String toString() {
+        return "Tag{" +
+                "name='" + name + '\'' +
+                ", post=" + post +
+                '}';
+    }
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }

@@ -17,6 +17,28 @@ public class Payment implements Serializable {
 
     private Timestamp creatime;
 
+    public Payment() {
+    }
+
+    public Payment(String code, long user, int status, String wechat, Timestamp creatime) {
+        this.code = code;
+        this.user = user;
+        this.status = status;
+        this.wechat = wechat;
+        this.creatime = creatime;
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "code='" + code + '\'' +
+                ", user=" + user +
+                ", status=" + status +
+                ", wechat='" + wechat + '\'' +
+                ", creatime=" + creatime +
+                '}';
+    }
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }

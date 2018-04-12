@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.qd.hds.grading.dao.admin.AdminUserDao">
+
+    <resultMap id="BaseResultMap" type="edu.qd.hds.grading.domain.User">
+        <result column="user_autoid" property="autoid" />
+        <result column="user_id" property="id" />
+        <result column="user_email" property="email" />
+        <result column="user_status" property="status" />
+        <result column="user_pwd" property="pwd" />
+        <result column="user_gins" property="gins" />
+    </resultMap>
+
+    <insert id="insertOne" parameterType="edu.qd.hds.grading.domain.User">
+        INSERT INTO `user` VALUES (#{autoid},#{id},#{email},#{status},#{pwd},#{gins})
+    </insert>
+
+    <update id="updateOne" parameterType="edu.qd.hds.grading.domain.User">
+        UPDATE `user`
+        <set>
+            <if test="email != null and email.length() > 0">
+                `user_email`=#{email},
+            </if>
+            <if test="status != null and status > 0">
+                `user_status`=#{status},
+            </if>
+            <if test="pwd != null and pwd.length() > 0">
+                `user_pwd`=#{pwd},
+            </if>
+            <if test="gins != null and gins > 0">
+                `user_gins`=#{gins},
+            </if>
+        </set>
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="autoid != null and autoid > 0">
+                AND `user_autoid`=#{autoid}
+            </if>
+            <if test="id != null and id.length() > 0">
+                AND `user_id`=#{id}
+            </if>
+        </trim>
+    </update>
+
+    <delete id="deleteByDTO" parameterType="edu.qd.hds.grading.domain.Admin">
+        DELETE FROM `user`
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="autoid != null and autoid > 0">
+                AND `user_autoid`=#{autoid}
+            </if>
+            <if test="id != null and id.length() > 0">
+                AND `user_id`=#{id}
+            </if>
+        </trim>
+    </delete>
+
+    <select id="selectByDTO" parameterType="map" resultMap="BaseResultMap">
+        SELECT * FROM `user`
+        <if test="domain != null">
+            <trim prefix="WHERE" prefixOverrides="AND">
+                <if test="domain.autoid != null and domain.autoid > 0">
+                    AND `user_autoid`=#{domain.autoid}
+                </if>
+                <if test="domain.id != null and domain.id.length() > 0">
+                    AND `user_id` LIKE CONCAT('%',#{domain.id},'%')
+                </if>
+                <if test="domain.status != null and domain.status > 0">
+                    AND `user_status`=#{domain.status}
+                </if>
+            </trim>
+        </if>
+        ORDER BY `user_autoid`
+        LIMIT #{offset},#{length}
+    </select>
+
+</mapper>

@@ -12,6 +12,24 @@ public class SensitiveWord implements Serializable {
 
     private String replace;
 
+    public SensitiveWord() {
+    }
+
+    public SensitiveWord(int section, String word, String replace) {
+        this.section = section;
+        this.word = word;
+        this.replace = replace;
+    }
+
+    @Override
+    public String toString() {
+        return "SensitiveWord{" +
+                "section=" + section +
+                ", word='" + word + '\'' +
+                ", replace='" + replace + '\'' +
+                '}';
+    }
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }

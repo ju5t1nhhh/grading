@@ -18,6 +18,30 @@ public class User implements Serializable {
 
     private int gins;
 
+    public User() {
+    }
+
+    public User(long autoid, String id, String email, int status, String pwd, int gins) {
+        this.autoid = autoid;
+        this.id = id;
+        this.email = email;
+        this.status = status;
+        this.pwd = pwd;
+        this.gins = gins;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "autoid=" + autoid +
+                ", id='" + id + '\'' +
+                ", email='" + email + '\'' +
+                ", status=" + status +
+                ", pwd='" + pwd + '\'' +
+                ", gins=" + gins +
+                '}';
+    }
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }

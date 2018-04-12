@@ -14,6 +14,26 @@ public class Section implements Serializable {
 
     private String url;
 
+    public Section() {
+    }
+
+    public Section(int id, String name, String intro, String url) {
+        this.id = id;
+        this.name = name;
+        this.intro = intro;
+        this.url = url;
+    }
+
+    @Override
+    public String toString() {
+        return "Section{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", intro='" + intro + '\'' +
+                ", url='" + url + '\'' +
+                '}';
+    }
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }

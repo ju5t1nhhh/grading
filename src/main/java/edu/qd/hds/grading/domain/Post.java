@@ -17,7 +17,31 @@ public class Post implements Serializable {
 
     private int section;
 
-    private Timestamp creattime;
+    private Timestamp creatime;
+
+    public Post() {
+    }
+
+    public Post(long id, long author, String multmedia, String text, int section, Timestamp creatime) {
+        this.id = id;
+        this.author = author;
+        this.multmedia = multmedia;
+        this.text = text;
+        this.section = section;
+        this.creatime = creatime;
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", author=" + author +
+                ", multmedia='" + multmedia + '\'' +
+                ", text='" + text + '\'' +
+                ", section=" + section +
+                ", creatime=" + creatime +
+                '}';
+    }
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -63,12 +87,12 @@ public class Post implements Serializable {
         this.section = section;
     }
 
-    public Timestamp getCreattime() {
-        return creattime;
+    public Timestamp getCreatime() {
+        return creatime;
     }
 
-    public void setCreattime(Timestamp creattime) {
-        this.creattime = creattime;
+    public void setCreatime(Timestamp creatime) {
+        this.creatime = creatime;
     }
 
 }

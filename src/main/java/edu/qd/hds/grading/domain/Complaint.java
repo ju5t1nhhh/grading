@@ -17,6 +17,28 @@ public class Complaint implements Serializable {
 
     private Timestamp creatime;
 
+    public Complaint() {
+    }
+
+    public Complaint(long user, long post, int cmtid, String msg, Timestamp creatime) {
+        this.user = user;
+        this.post = post;
+        this.cmtid = cmtid;
+        this.msg = msg;
+        this.creatime = creatime;
+    }
+
+    @Override
+    public String toString() {
+        return "Complaint{" +
+                "user=" + user +
+                ", post=" + post +
+                ", cmtid=" + cmtid +
+                ", msg='" + msg + '\'' +
+                ", creatime=" + creatime +
+                '}';
+    }
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }

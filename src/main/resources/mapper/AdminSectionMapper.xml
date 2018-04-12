@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.qd.hds.grading.dao.admin.AdminSectionDao">
+
+    <resultMap id="BaseResultMap" type="edu.qd.hds.grading.domain.Section">
+        <result column="sec_id" property="id" />
+        <result column="sec_name" property="name" />
+        <result column="sec_intro" property="intro" />
+        <result column="sec_url" property="url" />
+    </resultMap>
+
+    <insert id="insertOne" parameterType="edu.qd.hds.grading.domain.Section">
+        INSERT INTO `section` VALUES (#{id},#{name},#{intro},#{url})
+    </insert>
+
+    <update id="updateOne" parameterType="edu.qd.hds.grading.domain.Section">
+        UPDATE `section`
+        <set>
+            <if test="name != null and name.length() > 0">
+                `sec_name`=#{name},
+            </if>
+            <if test="intro != null and intro.length() > 0">
+                `sec_intro`=#{intro},
+            </if>
+            <if test="url != null and url.length() > 0">
+                `sec_url`=#{url},
+            </if>
+        </set>
+        WHERE `sec_id`=#{id}
+    </update>
+
+    <delete id="deleteByDTO" parameterType="edu.qd.hds.grading.domain.Section">
+        DELETE FROM `section` WHERE `sec_id`=#{id}
+    </delete>
+
+    <select id="selectByDTO" parameterType="map" resultMap="BaseResultMap">
+        SELECT * FROM `section`
+        ORDER BY `sec_id`
+        LIMIT #{offset},#{length}
+    </select>
+
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.qd.hds.grading.dao.admin.AdminPostDao">
+
+    <resultMap id="BaseResultMap" type="edu.qd.hds.grading.domain.Post">
+        <result column="post_id" property="id" />
+        <result column="post_author" property="author" />
+        <result column="post_multmedia" property="multimedia" />
+        <result column="post_text" property="text" />
+        <result column="post_section" property="section" />
+        <result column="post_creatime" property="creatime" />
+    </resultMap>
+
+    <delete id="deleteByDTO" parameterType="edu.qd.hds.grading.domain.Post">
+        DELETE FROM `post` WHERE `post_id`=#{id}
+    </delete>
+
+    <select id="selectByDTO" parameterType="map" resultMap="BaseResultMap">
+        SELECT * FROM `post`
+        <if test="domain != null">
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="domain.id != null and domain.id > 0">
+                AND `post_id`=#{domain.id}
+            </if>
+            <if test="domain.author != null and domain.author > 0">
+                AND `post_author`=#{domain.author}
+            </if>
+            <if test="domain.section != null and domain.section > 0">
+                AND `post_section`=#{domain.section}
+            </if>
+            <if test="domain.creatime != null">
+                AND `post_creatime`> #{domain.creatime}
+            </if>
+        </trim>
+        </if>
+        ORDER BY `post_creatime` DESC
+        LIMIT #{offset},#{length}
+    </select>
+
+</mapper>

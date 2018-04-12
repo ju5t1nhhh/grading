@@ -13,6 +13,24 @@ public class LogRecord implements Serializable {
 
     private Timestamp creatime;
 
+    public LogRecord() {
+    }
+
+    public LogRecord(String admin, String text, Timestamp creatime) {
+        this.admin = admin;
+        this.text = text;
+        this.creatime = creatime;
+    }
+
+    @Override
+    public String toString() {
+        return "LogRecord{" +
+                "admin='" + admin + '\'' +
+                ", text='" + text + '\'' +
+                ", creatime=" + creatime +
+                '}';
+    }
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
